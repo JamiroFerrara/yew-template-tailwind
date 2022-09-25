@@ -7,6 +7,7 @@ pub enum Msg {
 
 pub struct CounterComponent {
     count: i32,
+    title: String
 }
 
 impl Component for CounterComponent {
@@ -14,7 +15,7 @@ impl Component for CounterComponent {
     type Properties = ();
 
     fn create(_ctx: &Context<Self>) -> Self {
-        Self { count: 0}
+        Self { count: 0, title: "Built with love using WASM + Rust + Tailwind".to_string()}
     }
 
     fn update(&mut self, _ctx: &Context<Self>, msg: Self::Message) -> bool {
@@ -34,9 +35,9 @@ impl Component for CounterComponent {
         let link = ctx.link();
 
         html! {
-            <div class="text-center border border-black h-screen flex flex-col justify-center items-center bg-gradient-to-l from-blue-400 to-indigo-800">
+            <div class="text-center border border-black h-screen flex flex-col justify-center items-center bg-gray-800">
                 <p1 class="text-6xl font-extrabold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-indigo-800">{"Welcome to yew!"}</p1>
-                <p2 class="text-xl mb-4 text-white">{"Built with love using WASM + Rust"}</p2>
+                <p2 class="text-xl mb-4 text-white">{&self.title}</p2>
 
                 <div>
                     <p class="text-bold text-3xl text-white">{ self.count }</p>
